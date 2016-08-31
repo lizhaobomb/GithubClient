@@ -12,6 +12,7 @@
 #import "LZMessageViewController.h"
 #import "LZDiscoverViewController.h"
 #import "LZProfileViewController.h"
+#import "LCNetworkConfig.h"
 
 @interface AppDelegate ()
 
@@ -29,7 +30,10 @@
     self.window.rootViewController = self.tabBarController;
 
     [self.window makeKeyAndVisible];
+    
     [self customizeInterface];
+    
+    [self customNetworkRequest];
 
     return YES;
 }
@@ -172,6 +176,10 @@
     [tabBar setTitleTextAttributes:selectedAttrs forState:UIControlStateSelected];
     UITabBar *tabBarAppearance = [UITabBar appearance];
     [tabBarAppearance setBackgroundImage:[UIImage imageNamed:@"tabbar_background"]];
+}
+
+- (void)customNetworkRequest {
+    [LCNetworkConfig sharedInstance].mainBaseUrl = @"https://api.github.com";
 }
 
 @end
